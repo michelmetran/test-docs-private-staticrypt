@@ -56,17 +56,18 @@ build:
             - UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --all-extras --group docs --link-mode=copy
 
 
-            # Encrypt all the HTML files
-            # The passphrase is in the STATICRYPT_PASSWORD env variable
-            - find $READTHEDOCS_OUTPUT/html -type f -name "*.html" -exec staticrypt {} --short \;
-            
-            - cp -rf encrypted/* $READTHEDOCS_OUTPUT/html/
 
-        # build:
-        #     html:
-        #         - echo "Building HTML"
-        #         - mkdir -p $READTHEDOCS_OUTPUT/html/
-        #         - echo "Hello world!" > $READTHEDOCS_OUTPUT/html/index.html
+        build:
+            html:
+                - echo "Building HTML"
+                - mkdir -p $READTHEDOCS_OUTPUT/html/
+                # - echo "Hello world!" > $READTHEDOCS_OUTPUT/html/index.html
+
+                # Encrypt all the HTML files
+                # The passphrase is in the STATICRYPT_PASSWORD env variable
+                - find $READTHEDOCS_OUTPUT/html -type f -name "*.html" -exec staticrypt {} --short \;            
+                - cp -rf encrypted/* $READTHEDOCS_OUTPUT/html/
+
         #     pdf:
         #         - echo "Building PDF"
         #         - mkdir -p $READTHEDOCS_OUTPUT/pdf/
