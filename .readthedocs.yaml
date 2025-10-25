@@ -1,0 +1,26 @@
+version: 2
+
+# Build documentation with MkDocs
+mkdocs:
+  configuration: mkdocs.yml
+
+# Optionally build your docs in additional formats such as PDF and ePub
+formats:
+  - pdf
+  - epub
+
+build:
+  os: ubuntu-24.04
+  tools:
+    python: "3.11"
+    nodejs: "18"  # Necessário para o StaticCrypt
+    
+  jobs:
+    post_build:
+      # Instala as dependências do Node.js e executa o script de criptografia
+      - npm install
+      - python encrypt_docs.py
+
+python:
+  install:
+    - requirements: docs/requirements.txt

@@ -1,3 +1,11 @@
+# Node
+node_modules/
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

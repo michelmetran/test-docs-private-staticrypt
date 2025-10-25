@@ -1,0 +1,11 @@
+{
+  "name": "test-docs-private-staticrypt",
+  "version": "1.0.0",
+  "description": "Protected documentation using StaticCrypt",
+  "scripts": {
+    "encrypt": "staticrypt"
+  },
+  "dependencies": {
+    "staticrypt": "^3.5.4"
+  }
+}

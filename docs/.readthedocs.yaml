@@ -26,6 +26,12 @@ build:
         post_build:
             - echo "Command run at 'post_build' step"
             - echo `date`
+            # Install node dependencies and run encryption
+            - npm install
+            # Use staticrypt to hide each page behind a password
+            - npm install -g staticrypt
+
+            - python encrypt_docs.py
 
         post_create_environment:
             # Install Poetry
@@ -49,8 +55,6 @@ build:
             - pip install uv
             - UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --all-extras --group docs --link-mode=copy
 
-            # Use staticrypt to hide each page behind a password
-            - npm install -g staticrypt
 
             # Encrypt all the HTML files
             # The passphrase is in the STATICRYPT_PASSWORD env variable
