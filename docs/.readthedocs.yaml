@@ -30,7 +30,6 @@ build:
             - npm install
             # Use staticrypt to hide each page behind a password
             - npm install -g staticrypt
-
             - python encrypt_docs.py
 
         post_create_environment:
@@ -62,6 +61,7 @@ build:
                 - echo "Building HTML"
                 - mkdir -p $READTHEDOCS_OUTPUT/html/
                 # - echo "Hello world!" > $READTHEDOCS_OUTPUT/html/index.html
+                - mkdocs build --site-dir $READTHEDOCS_OUTPUT/html
 
                 # Encrypt all the HTML files
                 # The passphrase is in the STATICRYPT_PASSWORD env variable
