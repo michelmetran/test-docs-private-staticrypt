@@ -1,6 +1,9 @@
 # Node
 node_modules/
 
+# Lixo
+_lixo/
+
 # IDEs
 .vs/
 .vscode/

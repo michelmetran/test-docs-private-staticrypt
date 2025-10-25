@@ -4,8 +4,6 @@
 # Required
 version: 2
 
-
-
 # Optionally build your docs in additional formats such as PDF and ePub
 formats:
     - pdf
@@ -16,7 +14,7 @@ build:
     os: ubuntu-24.04
     tools:
         python: "3.11"
-        nodejs: "18"
+        #nodejs: "18"
 
     # https://browniebroke.com/blog/2022-11-21-specify-docs-dependency-groups-with-poetry-and-read-the-docs/
     # https://docs.readthedocs.com/platform/stable/config-file/v2.html#build-jobs
@@ -29,10 +27,10 @@ build:
             - echo "Command run at 'post_build' step"
             - echo `date`
             # Install node dependencies and run encryption
-            - npm install
+            #- npm install
             # Use staticrypt to hide each page behind a password
-            - npm install -g staticrypt
-            - python encrypt_docs.py
+            #- npm install -g staticrypt
+            #- python encrypt_docs.py
 
         post_create_environment:
             # Install Poetry
@@ -56,8 +54,6 @@ build:
             - pip install uv
             - UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --all-extras --group docs --link-mode=copy
 
-
-
         build:
             html:
                 - echo "Building HTML"
@@ -67,8 +63,8 @@ build:
 
                 # Encrypt all the HTML files
                 # The passphrase is in the STATICRYPT_PASSWORD env variable
-                - find $READTHEDOCS_OUTPUT/html -type f -name "*.html" -exec staticrypt {} --short \;            
-                - cp -rf encrypted/* $READTHEDOCS_OUTPUT/html/
+                #- find $READTHEDOCS_OUTPUT/html -type f -name "*.html" -exec staticrypt {} --short \;
+                #- cp -rf encrypted/* $READTHEDOCS_OUTPUT/html/
 
         #     pdf:
         #         - echo "Building PDF"
