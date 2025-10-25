@@ -8,5 +8,7 @@ dependencies = []
 
 [dependency-groups]
 docs = [
+    "cairosvg>=2.8.2",
+    "mkdocs-jupyter>=0.25.1",
     "mkdocs-material[imaging]>=9.6.22",
 ]
